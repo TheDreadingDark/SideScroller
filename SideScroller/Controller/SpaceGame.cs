@@ -3,6 +3,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+// Reference for all Model objects
+using SideScroller.Model;
 
 namespace SideScroller.Controller
 {
@@ -13,6 +15,8 @@ namespace SideScroller.Controller
 	{
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
+		// Represents the player 
+		private Player player;
 
 		public SpaceGame()
 		{
@@ -31,6 +35,8 @@ namespace SideScroller.Controller
 			// TODO: Add your initialization logic here
 
 			base.Initialize();
+			// Initialize the player class
+			player = new Player();
 		}
 
 		/// <summary>
@@ -43,6 +49,11 @@ namespace SideScroller.Controller
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
 			//TODO: use this.Content to load your game content here 
+
+			// Load the player resources 
+			Vector2 playerPosition = new 
+			Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
+			player.Initialize(Content.Load<Texture2D>("Texture/player"), playerPosition);
 		}
 
 		/// <summary>
@@ -54,10 +65,10 @@ namespace SideScroller.Controller
 		{
 			// For Mobile devices, this logic will close the Game when the Back button is pressed
 			// Exit() is obsolete on iOS
-#if !__IOS__ && !__TVOS__
+		#if !__IOS__ && !__TVOS__
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
-#endif
+		#endif
 
 			// TODO: Add your update logic here
 
@@ -75,6 +86,15 @@ namespace SideScroller.Controller
 			//TODO: Add your drawing code here
 
 			base.Draw(gameTime);
+
+			// Start drawing 
+			spriteBatch.Begin(); 
+			// Draw the Player 
+			player.Draw(spriteBatch); 
+			// Stop drawing 
+			spriteBatch.End();
 		}
+
+
 	}
 }
