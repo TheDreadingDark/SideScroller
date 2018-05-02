@@ -364,15 +364,15 @@ namespace SideScroller.Controller
 
 					// Play the explosion sound
 					explosionSound.Play();
+
+					//Add to the player's score
+					score += enemies[i].ScoreValue;
 				}
 
 				if (enemies[i].Active == false)
 				{
 					enemies.RemoveAt(i);
 				}
-
-				//Add to the player's score
-				score += enemies[i].ScoreValue;
 			}
 		}
 
