@@ -1,13 +1,14 @@
 ﻿<Properties StartupConfiguration="{33E4A99E-3333-4D45-8550-89904C409ADD}|Default">
   <MonoDevelop.Ide.ItemProperties.SideScroller PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SideScroller/Model/Enemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SideScroller/Model/Projectile.cs">
     <Files>
       <File FileName="SideScroller/Controller/Program.cs" Line="14" Column="34" />
-      <File FileName="SideScroller/Controller/SpaceGame.cs" Line="137" Column="64" />
+      <File FileName="SideScroller/Controller/SpaceGame.cs" Line="157" Column="22" />
       <File FileName="SideScroller/Model/Player.cs" Line="75" Column="12" />
-      <File FileName="SideScroller/View/Animation.cs" Line="146" Column="5" />
-      <File FileName="SideScroller/View/ParallaxingBackground.cs" Line="79" Column="4" />
-      <File FileName="SideScroller/Model/Enemy.cs" Line="2" Column="29" />
+      <File FileName="SideScroller/View/Animation.cs" Line="145" Column="3" />
+      <File FileName="SideScroller/View/ParallaxingBackground.cs" Line="18" Column="31" />
+      <File FileName="SideScroller/Model/Enemy.cs" Line="123" Column="4" />
+      <File FileName="SideScroller/Model/Projectile.cs" Line="2" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
