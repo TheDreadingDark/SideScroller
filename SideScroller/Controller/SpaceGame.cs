@@ -1,10 +1,11 @@
 ﻿using System;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 // Reference for all Model objects
 using SideScroller.Model;
+// Link the View namespace
+using SideScroller.View;
 
 namespace SideScroller.Controller
 {
@@ -15,18 +16,14 @@ namespace SideScroller.Controller
 	{
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
-
 		// Represents the player 
 		private Player player;
-
 		// Keyboard states used to determine key presses
 		private KeyboardState currentKeyboardState;
 		private KeyboardState previousKeyboardState;
-
 		// Gamepad states used to determine button presses
 		private GamePadState currentGamePadState;
 		private GamePadState previousGamePadState;
-
 		// A movement speed for the player
 		private float playerMoveSpeed;
 
@@ -46,13 +43,13 @@ namespace SideScroller.Controller
 		{
 			// TODO: Add your initialization logic here
 
-			base.Initialize();
-
 			// Initialize the player class
 			player = new Player();
 
 			// Set a constant player move speed
 			playerMoveSpeed = 8.0f;
+
+			base.Initialize();
 		}
 
 		/// <summary>
@@ -66,10 +63,13 @@ namespace SideScroller.Controller
 
 			//TODO: use this.Content to load your game content here 
 
-			// Load the player resources 
-			Vector2 playerPosition = new 
-			Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
-			player.Initialize(Content.Load<Texture2D>("Texture/player"), playerPosition);
+			// Load the player resources
+			Animation playerAnimation = new Animation();
+			Texture2D playerTexture = Content.Load<Texture2D>("Animation/shipAnimation");
+			playerAnimation.Initialize(playerTexture, Vector2.Zero, 115, 69, 8, 30, Color.White, 1f, true);
+
+			Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
+			player.Initialize(playerAnimation, playerPosition);
 		}
 
 		/// <summary>
@@ -113,18 +113,19 @@ namespace SideScroller.Controller
 
 			//TODO: Add your drawing code here
 
-			base.Draw(gameTime);
-
 			// Start drawing 
 			spriteBatch.Begin(); 
 			// Draw the Player 
 			player.Draw(spriteBatch); 
 			// Stop drawing 
 			spriteBatch.End();
+
+			base.Draw(gameTime);
 		}
 
 		private void UpdatePlayer(GameTime gameTime)
 		{
+			player.Update(gameTime);
 
 			// Get Thumbstick Controls
 			player.Position.X += currentGamePadState.ThumbSticks.Left.X * playerMoveSpeed;
