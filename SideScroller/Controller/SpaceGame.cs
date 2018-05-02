@@ -71,6 +71,11 @@ namespace SideScroller.Controller
 		// The music played during gameplay
 		private Song gameplayMusic;
 
+		//Number that holds the player score
+		private int score;
+		// The font used to display UI elements
+		private SpriteFont font;
+
 		public SpaceGame()
 		{
 			graphics = new GraphicsDeviceManager(this);
@@ -115,6 +120,9 @@ namespace SideScroller.Controller
 
 			explosions = new List<Animation>();
 
+			//Set player's score to zero
+			score = 0;
+
 			base.Initialize();
 		}
 
@@ -158,6 +166,9 @@ namespace SideScroller.Controller
 
 			// Start the music right away
 			PlayMusic(gameplayMusic);
+
+			// Load the score font
+//			font = Content.Load("Font/gameFont");
 		}
 
 		/// <summary>
@@ -243,6 +254,11 @@ namespace SideScroller.Controller
 			    explosions[i].Draw(spriteBatch);
 			}
 
+			// Draw the score
+			//spriteBatch.DrawString(font, "score: " + score, new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y), Color.White);
+			// Draw the player health
+			//spriteBatch.DrawString(font, "health: " + player.Health, new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + 30), Color.White);
+
 			// Draw the Player 
 			player.Draw(spriteBatch); 
 			// Stop drawing 
@@ -293,6 +309,14 @@ namespace SideScroller.Controller
 
 			// Play the laser sound
 			laserSound.Play();
+
+			// reset score if player health goes to zero
+			if (player.Health <= 0)
+			{
+			    player.Health = 100;
+			    score = 0;
+			}
+
 		}
 
 		private void AddEnemy()
@@ -346,6 +370,9 @@ namespace SideScroller.Controller
 				{
 					enemies.RemoveAt(i);
 				}
+
+				//Add to the player's score
+				score += enemies[i].ScoreValue;
 			}
 		}
 
