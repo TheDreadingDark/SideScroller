@@ -3,7 +3,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="SideScroller/Controller/SpaceGame.cs">
     <Files>
       <File FileName="SideScroller/Controller/Program.cs" Line="14" Column="34" />
-      <File FileName="SideScroller/Controller/SpaceGame.cs" Line="223" Column="5" />
+      <File FileName="SideScroller/Controller/SpaceGame.cs" Line="369" Column="6" />
       <File FileName="SideScroller/Model/Player.cs" Line="75" Column="12" />
       <File FileName="SideScroller/View/Animation.cs" Line="145" Column="3" />
       <File FileName="SideScroller/View/ParallaxingBackground.cs" Line="18" Column="31" />
